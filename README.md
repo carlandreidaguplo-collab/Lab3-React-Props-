@@ -1,3 +1,5 @@
+Lab 3
+
 1. What is the difference between props and state?
 
 Props are the values a parent component passes down to a child, like the title and price I passed into ProductCard, and they are basically read-only for the child, while state is data a component keeps and manages by itself, like the cart count in App, which can change over time and makes the component re-render when it does. So I think the easiest way to remember it is that props come from outside and state lives inside.
@@ -17,3 +19,25 @@ React uses the key to tell which item in a list is which, so when the list chang
 5. What does the children prop allow you to do that a normal prop does not?
 
 The children prop lets me put content between the opening and closing tags of a component, like <ProductCard><span>New</span></ProductCard>, so the parent can decide what goes inside the card, such as a badge, without ProductCard needing a special prop for it. A normal prop is usually a single value like a string, number, or function, while children can be whole pieces of JSX, which makes the component more flexible and reusable, and in my case it let two cards show "New" and "Sale" while the others show nothing.
+
+LAB4
+
+1. Why do we use two separate states, searchText and debouncedSearch, instead of only one?
+
+searchText updates on every keystroke so the text box shows what I'm typing, while debouncedSearch only updates after a 300 ms pause and is the one used for filtering. With only one state, the list would re-filter on every letter.
+
+2. What would happen if the debounce effect did not return a cleanup function?
+
+The old timers would never be cancelled, so every keystroke would still fire its own update later, and the list could flicker through older values. The cleanup calls clearTimeout so only the last pause in typing updates debouncedSearch.
+
+3. What is the purpose of the dependency array? What happens if it is empty ([])? What happens if it is left out completely?
+
+It tells React when to run the effect again. If it is empty, the effect runs only once after the first render, and if it is left out, the effect runs after every render.
+
+4. Why should we avoid sorting the original products array directly?
+
+sort() changes the array it is called on, so the original order would be lost, and changing data in place can cause bugs in React. I sorted a copy made with the spread operator instead.
+
+5. Is the filtered product list better stored in its own state, or calculated from existing state during rendering? Explain your choice.
+
+I think it is better to calculate it during rendering, because it can already be worked out from products, debouncedSearch, category, and sortOrder. Storing it in its own state would keep the same data in two places, and it could get out of sync with the filters.
