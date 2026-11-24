@@ -50,6 +50,11 @@ function App() {
     displayedProducts.sort((a, b) => b.price - a.price);
   }
 
+  // update the browser tab title whenever the number of results changes
+  useEffect(() => {
+    document.title = `CvSU Mini Store (${displayedProducts.length} results)`;
+  }, [displayedProducts.length]);
+
   return (
     <div className="app">
       <header>
@@ -75,6 +80,12 @@ function App() {
       <p className="result-count">
         Showing {displayedProducts.length} of {products.length} products
       </p>
+
+      {displayedProducts.length === 0 && (
+        <p className="empty-state">
+          No products found. Try a different keyword or category.
+        </p>
+      )}
 
       <div className="grid">
         {displayedProducts.map((product) => (
