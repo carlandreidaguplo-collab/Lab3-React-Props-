@@ -1,6 +1,23 @@
 body { margin: 0; font-family: system-ui, sans-serif; background: #f4f6f4; }
 .app { max-width: 1000px; margin: 0 auto; padding: 1rem; }
-header { background: #1b6b3a; color: #fff; text-align: center; padding: 1rem; border-radius: 10px; }
+header {
+  background: #1b6b3a;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 10px;
+}
 header h1 { margin: 0; }
-.cart-message { background: #fff8e1; border-left: 4px solid #f1c40f; padding: 0.75rem 1rem; margin: 1rem 0; border-radius: 6px; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+.cart-message {
+  background: #fff8e1;
+  border-left: 4px solid #f1c40f;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  border-radius: 6px;
+}
+.result-count { color: #444; margin: 0 0 0.75rem; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}

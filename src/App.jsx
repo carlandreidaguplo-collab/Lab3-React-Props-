@@ -25,6 +25,20 @@ function App() {
     setSortOrder("default");
   };
 
+  // derived list: calculated during rendering, original array is not modified
+  const filteredProducts = products
+    .filter((product) =>
+      product.title.toLowerCase().includes(searchText.toLowerCase())
+    )
+    .filter((product) => category === "All" || product.category === category);
+
+  const displayedProducts = [...filteredProducts];
+  if (sortOrder === "lowToHigh") {
+    displayedProducts.sort((a, b) => a.price - b.price);
+  } else if (sortOrder === "highToLow") {
+    displayedProducts.sort((a, b) => b.price - a.price);
+  }
+
   return (
     <div className="app">
       <header>
@@ -47,8 +61,12 @@ function App() {
         onClear={handleClear}
       />
 
+      <p className="result-count">
+        Showing {displayedProducts.length} of {products.length} products
+      </p>
+
       <div className="grid">
-        {products.map((product) => (
+        {displayedProducts.map((product) => (
           <ProductCard
             key={product.id}
             title={product.title}
