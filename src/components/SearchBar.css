@@ -1,0 +1,38 @@
+.search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.search-bar input,
+.search-bar select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+.search-bar input {
+  flex: 1 1 220px;
+}
+.search-bar select {
+  flex: 0 1 180px;
+}
+.search-bar button {
+  background: #6b7280;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.search-bar button:hover {
+  background: #4b5563;
+}
+
+@media (max-width: 600px) {
+  .search-bar input,
+  .search-bar select,
+  .search-bar button {
+    flex: 1 1 100%;
+  }
+}

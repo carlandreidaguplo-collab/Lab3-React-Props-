@@ -1,15 +1,28 @@
 import { useState } from "react";
 import products from "./data/products";
 import ProductCard from "./components/ProductCard";
+import SearchBar from "./components/SearchBar";
 import "./App.css";
 
 function App() {
+  // cart state from Lab 3
   const [count, setCount] = useState(0);
   const [lastAdded, setLastAdded] = useState("");
+
+  // Lab 4 state
+  const [searchText, setSearchText] = useState("");
+  const [category, setCategory] = useState("All");
+  const [sortOrder, setSortOrder] = useState("default");
 
   const handleAddToCart = (title) => {
     setCount(count + 1);
     setLastAdded(title);
+  };
+
+  const handleClear = () => {
+    setSearchText("");
+    setCategory("All");
+    setSortOrder("default");
   };
 
   return (
@@ -23,6 +36,16 @@ function App() {
           ? "Your cart is empty."
           : `Items added to cart: ${count} (Last added: ${lastAdded})`}
       </p>
+
+      <SearchBar
+        searchText={searchText}
+        onSearchChange={setSearchText}
+        category={category}
+        onCategoryChange={setCategory}
+        sortOrder={sortOrder}
+        onSortChange={setSortOrder}
+        onClear={handleClear}
+      />
 
       <div className="grid">
         {products.map((product) => (
